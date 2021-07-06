@@ -26,6 +26,11 @@ df = pd.read_html(page_url, attrs = {'class': 'tabl_quotes'}).head()
 
 # In[ ]:
 
+summ=0
+ds=pd.read_csv('power.csv', 'r', delimiter=',')
+ds2=ds[(ds['year'] >= 2005) & (ds['year'] <= 2010)&(ds['quantity'] > 0)]
+ds3=ds2[ds2.category.isin([4,12,21])]
+summ=ds3[ds3.country.str.contains('|'.join(['Lat','Lit','Est']))]['quantity'].sum()
 
 
 
